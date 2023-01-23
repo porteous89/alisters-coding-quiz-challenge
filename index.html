@@ -12,16 +12,82 @@
     <header>
         <div class="header">
             <div>
-                <button>View High Scores</button>
-            </div>
-            <div>
-                <p>Time Left: 60 's</p>
+                <button class=""button id="highscore-view">View High Scores</button>
+                <p id="timer">Time Left: 60 's</p>
             </div>
         </div>
     </header>
+
+    <main class="container">
+        <div class="inner-container">
+            <section>
+                <div class="quiz-intro">
+                    <h1>Coding Quiz Challenge</h1>
+                    <p id="Intro">Let's test your knowledge on JavaScript fundamentals! Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds!</p>
+                    <button class="button" id="start-button">Start Quiz</button>
+                </div>
+            </section>
+
+            <section>
+                <div>
+                    <div>
+                        <h2 id="question">Ask Question</h2>
+                        <ul>
+                            <li>
+                                <button class="choice-button" id="AnsBtn1" value="a"></button>
+                            </li>
+                            <li>
+                                <button class="choice-button" id="AnsBtn2" value="b"></button>
+                            </li>
+                            <li>
+                                <button class="choice-button" id="AnsBtn3" value="c"></button>
+                            </li>
+                            <li>
+                                <button class="choice-button" id="AnsBtn4" value="d"></button>
+                            </li>
+                        </ul>
+                        <div>
+                            <div id="check-ans">
+                                <p>Correct or Incorrect</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="submit" id="submit">
+                <div>
+                    <h2 id="end">Time's up!</h2>
+                    <p id="final-score">Your final score is :0</p>
+                    <p>
+                        Enter Initials: 
+                        <input id="Initials">
+                        <button class="button" id="submit-btn">Submit</button>
+                    </p>
+                </div>
+            </section>
+            <section class="highscore-list" id="highscore-list">
+                <div>
+                    <h2>High Scores</h2>
+                    <div id="record">
+                        <p>Your Record</p>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <button class="button" id="back-btn">Back</button>
+                        <button class="button" id="clear-btn">Clear Scores</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <div class="copyright-notice">
+            <p>© <time datetime="2023">2023,</time> All rights reserved by porteous89</p>
+        </div>
+    </footer>
     
-
-
     <script src="/assets/script.js"></script>
+
 </body>
 </html>

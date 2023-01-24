@@ -9,10 +9,11 @@
     <title>Coding Quiz Game</title>
 </head>
 <body>
+    <!--Top-bar Section-->
     <header>
         <div class="header">
             <div>
-                <button class=""button id="highscore-view">View High Scores</button>
+                <button class="button" id="highscore-view">View High Scores</button>
                 <p id="timer">Time Left: 60 's</p>
             </div>
         </div>
@@ -20,61 +21,58 @@
 
     <main class="container">
         <div class="inner-container">
-            <section>
-                <div class="quiz-intro">
+<!--Quiz Intro Section-->
+            <section class="quiz-intro">
                     <h1>Coding Quiz Challenge</h1>
                     <p id="Intro">Let's test your knowledge on JavaScript fundamentals! Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds!</p>
-                    <button class="button" id="start-button">Start Quiz</button>
-                </div>
+                    <button class="button" id="start-btn">Start Quiz</button>
             </section>
-
-            <section>
-                <div>
+<!--Question Section-->
+            <section class="question-section hide" id="quiz-section">
+                    <h2 class="question-title" id="question-title">Ask Question</h2>
+                    <ul>
+                            <li>
+                                <button class="choice-button" id="AnsBtn1" value="a">Answer One</button>
+                            </li>
+                            <li>
+                                <button class="choice-button" id="AnsBtn2" value="b">Answer Two</button>
+                            </li>
+                            <li>
+                                <button class="choice-button" id="AnsBtn3" value="c">Answer Three</button>
+                            </li>
+                            <li>
+                                <button class="choice-button" id="AnsBtn4" value="d">Answer Four</button>
+                            </li>
+                    </ul>
                     <div>
-                        <h2 id="question">Ask Question</h2>
-                        <ul>
-                            <li>
-                                <button class="choice-button" id="AnsBtn1" value="a"></button>
-                            </li>
-                            <li>
-                                <button class="choice-button" id="AnsBtn2" value="b"></button>
-                            </li>
-                            <li>
-                                <button class="choice-button" id="AnsBtn3" value="c"></button>
-                            </li>
-                            <li>
-                                <button class="choice-button" id="AnsBtn4" value="d"></button>
-                            </li>
-                        </ul>
-                        <div>
-                            <div id="check-ans">
-                                <p>Correct or Incorrect</p>
-                            </div>
-                        </div>
+                      <div id="check-ans hide">
+                       <p>Correct or Incorrect</p>
+                      </div>
                     </div>
-                </div>
             </section>
-            <section class="submit" id="submit">
-                <div>
+            <!--Finished Section-->
+            <section class="finished hide" id="finished">
                     <h2 id="end">Time's up!</h2>
                     <p id="final-score">Your final score is :0</p>
-                    <p>
+                    <p class="enter-score" id="enter-score">
                         Enter Initials: 
-                        <input id="Initials">
+                        <input id="Initials" placeholder="Your Initials here">
                         <button class="button" id="submit-btn">Submit</button>
                     </p>
-                </div>
             </section>
-            <section class="highscore-list" id="highscore-list">
+            <!--Highscores Section-->
+            <section class="highscore-list hide" id="highscore-list">
                 <div>
-                    <h2>High Scores</h2>
+                    <h2 class="highscore-title" id="highscore-title">High Scores</h2>
                     <div id="record">
                         <p>Your Record</p>
+                        <ul>
+                            <li>AP - 25</li>
+                        </ul>
                     </div>
-                    <br>
-                    <br>
+
                     <div>
-                        <button class="button" id="back-btn">Back</button>
+                        <button class="button" id="quit-btn">Quit</button>
                         <button class="button" id="clear-btn">Clear Scores</button>
                     </div>
                 </div>

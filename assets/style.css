@@ -13,8 +13,6 @@ body{
 
 h1{
     font-size: 2em;
-    padding: 10px;
-    margin: 10px;
 }
 h2{
     font-size: 1.75em;
@@ -22,10 +20,11 @@ h2{
 
 h1, h2{
     text-align: center;
+    padding: 10px;
+    margin: 10px;
 }
 
 p{
-    color:whitesmoke;
     font-size: 1.3em;
     padding: 10px;
     margin: 10px;
@@ -35,14 +34,16 @@ p{
 button{
     background-color: #9240a9;
     color: whitesmoke;
-    outline: blue;
+    border: none;
     padding: 25px;
-    border-radius: 20px;
+    border-radius: 10px;
+    margin: 5px;
+    font-weight: 500;
+    font-size: 1.3em;
 }
 
 #start-button{
-    display: block;
-    margin: auto;
+    
 }
 
 .header{
@@ -77,9 +78,17 @@ padding: 25px;
     justify-content: center;
 }
 
-.quiz-intro{
+.quiz-intro, .question-section, .finished, .highscore-list {
     margin: 50px;
-    
+    display: block;
+}
+
+.quiz-intro{
+    text-align: center;
+}
+
+.quiz-intro p{
+margin: 50px 100px 50px 100px;
 }
 
 footer{
@@ -88,4 +97,8 @@ footer{
 .copyright-notice{
     margin: auto;
     padding-top: 30px;
+}
+
+.hide{
+    display:none
 }

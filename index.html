@@ -12,10 +12,8 @@
     <!--Top-bar Section-->
     <header>
         <div class="header">
-            <div>
                 <button class="button" id="highscore-view">View High Scores</button>
-                <p id="timer">Time Left: 60 's</p>
-            </div>
+                <p id="timer">Time Left: <span id="countdown"> 60 's</span></p>
         </div>
     </header>
 
@@ -28,7 +26,7 @@
                     <button class="button" id="start-btn">Start Quiz</button>
             </section>
 <!--Question Section-->
-            <section class="question-section hide" id="quiz-section">
+            <section class="question-section hide" id="question-section">
                     <h2 class="question-title" id="question-title">Ask Question</h2>
                     <ul>
                             <li>
@@ -52,29 +50,27 @@
             </section>
             <!--Finished Section-->
             <section class="finished hide" id="finished">
-                    <h2 id="end">Time's up!</h2>
-                    <p id="final-score">Your final score is :0</p>
-                    <p class="enter-score" id="enter-score">
+                <div id="end">
+                    <h2>Time's up!</h2>
+                </div>
+                <form id="initials-form" class="initials">
+                    <p>
                         Enter Initials: 
                         <input id="Initials" placeholder="Your Initials here">
                         <button class="button" id="submit-btn">Submit</button>
                     </p>
+                </div> 
             </section>
             <!--Highscores Section-->
-            <section class="highscore-list hide" id="highscore-list">
+            <section class="highscore-container hide" id="highscore-container">
                 <div>
-                    <h2 class="highscore-title" id="highscore-title">High Scores</h2>
-                    <div id="record">
-                        <p>Your Record</p>
-                        <ul>
-                            <li>AP - 25</li>
-                        </ul>
-                    </div>
+                    <h2 class="highscore" id="highscore">High Scores</h2>
+                    <ol id="high-score-list" class="score-list"></ol>
+                </div>
 
-                    <div>
+                <div>
                         <button class="button" id="quit-btn">Quit</button>
                         <button class="button" id="clear-btn">Clear Scores</button>
-                    </div>
                 </div>
             </section>
         </div>

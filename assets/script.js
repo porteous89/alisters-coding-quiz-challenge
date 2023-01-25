@@ -1,186 +1,168 @@
-// 1. define variables for quiz container, timer, questions, final screen, highscore list, qestion index, time left.
-//2. add event listeners
-//3. define function to start quiz when start  button pressed
-//4. start timer, use setInterval to updateTimer
-//5. function to start first question
-
-const startBtn = document.querySelector("#start-btn");
-questionSection = document.getElementById('#question-section');
-quizIntro = document.getElementById('quiz-into');
-
-
-var index = 0
-let questionArr = [
+// Quiz data
+const questions = [
     {
-        numb: 1,
-        question: "JavaScript is which type of language?",
-        answer: "Object-Based",
-        options: [
-            "Object-Oriented",
-            "Object-Based",
-            "Assembly-language",
-            "High-level"
-        ]
-    },
-    {
-        numb: 2,
-        question: "When interpreter encounters an empty statement, what will it do?",
-        answer: "Ignore the statement",
-        options: [
-            "Show a warning",
-            "Prompt to complete the statement",
-            "Throw an error",
-            "Ignore the statement",
-        ]
-    },
-    {
-        numb: 3,
+      question: "What is the keyword used to create a variable?",
+      answers: {
+        a: "var",
+        b: "let",
+        c: "const",
+        d: "define"
+      },
+      correctAnswer: "b"
+    },{
         question: "JavaScript is interpreted by _________",
-        answer: "Client",
-        options: [
-            "Client",
-            "Server",
-            "Object",
-            "None of the above",
-        ]
-    },
-    {
-        numb: 4,
+        answers: {
+          a:"Client",
+          b:"Server",
+          c:"Object",
+          d: "None of the above",
+        },
+        correctAnswer: "a"
+    },{
         question: "Which of the following is not a valid JavaScript variable name?",
-        answer: "2names",
-        options: [
-            "2names",
-            "_first_and_last_names",
-            "FirstAndLast",
-            "None of the above",
-        ]
-    },
-    {
-        numb: 5,
+        answers:{
+          a:"2names",
+          b:"_first_and_last_names",
+          c:"FirstAndLast",
+          d:"None of the above",
+        },
+        correctAnswer: "a"
+    },{
         question : "The _______ method of an Array object adds and/or removes elements from an array.",
-        answer: "Slice",
-        options: [
-            "Reverse",
-            "Shift",
-            "Slice",
-            "Splice",
-        ]
-    },
-    {
-        numb: 6,
-        question : "Using _______ statement is how you test for a specific condition.",
-        answer: "If",
-        options: [
-            "Select",
-            "If",
-            "Switch",
-            "For",
-        ]
-    },
-    {
-        numb: 7,
+        answers:{
+            a:"Reverse",
+            b:"Shift",
+            c:"Slice",
+            d:"Splice",
+        },
+        correctAnswer: "c"
+    },{
+        question : "Using an _______ statement is how you test for a specific condition.",
+        answers:{
+            a:"Select",
+            b:"If",
+            c:"Switch",
+            d:"For",
+        },
+        correctAnswer: "b"
+    },{
         question : "Which of the following is not considered a JavaScript operator?",
-        answer: "delete",
-        options: [
-            "new",
-            "this",
-            "delete",
-            "typeof",
-        ]
+        answers:{
+            a:"new",
+            b:"this",
+            c:"delete",
+            d:"typeof",
+        },
+        correctAnswer: "c"
     },
-    {
-        numb: 8,
-        question : "Which of the following is true about variable naming conventions in JavaScript?",
-        answer: "Both of the above.",
-        options: [
-            "You should not use any of the JavaScript reserved keyword as variable name.",
-            "JavaScript variable names should not start with a numeral (0-9).",
-            "Both of the above.",
-            "None of the above.",
-        ]
-    },
-    {
-        numb: 9,
-        question : "Which of the following type of variable is visible only within a function where it is defined?",
-        answer: "local variable",
-        options: [
-            "global variable",
-            "local variable",
-            "Both of the above.",
-            "None of the above.",
-        ]
-    },
-    {
-        numb: 10,
-        question : "Which of the following is the correct syntax to redirect a url using JavaScript?",
-        answer: "window.location='http://www.newlocation.com';",
-        options: [
-            "document.location='http://www.newlocation.com';",
-            "browser.location='http://www.newlocation.com';",
-            "navigator.location='http://www.newlocation.com';",
-            "window.location='http://www.newlocation.com';",
-        ]
+  ];
+  
+  // Select elements from DOM
+  const startButton = document.getElementById("start-btn");
+  const questionSection = document.getElementById("question-section");
+  const questionTitle = document.getElementById("question-title");
+  const answerButtons = document.querySelectorAll(".choice-button");
+  const finishedSection = document.getElementById("finished");
+  const timer = document.getElementById("countdown");
+  quizIntro =document.getElementById('quiz-intro');
+  // Global variables
+  let currentQuestion = 0;
+  let timeLeft = 74;
+  
+    // Start quiz
+    startButton.addEventListener("click", startQuiz);
+  
+    function startQuiz() {
+        // Hide intro section and show question section
+        questionSection.classList.remove("hide");
+        finishedSection.classList.add("hide");
+        // Hide intro
+        document.querySelector(".quiz-intro").classList.add("hide");
+        // Start timer
+        setInterval(countdown, 1000);
+        // Display first question
+        displayQuestion();
     }
-];
+  
+  // Display the current question
+  function displayQuestion() {
+    const currentQuestionData = questions[currentQuestion];
+    questionTitle.innerText = currentQuestionData.question;
+    // Display the answers
+    for (let i = 0; i < answerButtons.length; i++) {
+      const letter = answerButtons[i].value;
+      answerButtons[i].innerText = currentQuestionData.answers[letter];
+    }
+  }
+  
+  // Handle clicks on the answer buttons
+  for (let i = 0; i < answerButtons.length; i++) {
+    answerButtons[i].addEventListener("click", checkAnswer);
+  }
+  
+  let answered = false;
 
-const quitBtn = document.querySelector('#quit-btn');
+function checkAnswer(event) {
+  // Check if the player has already answered
+  if (answered) {
+    return;
+  }
+  answered = true;
 
-quitBtn.onclick = ()=>{
-    questionSection.classList.add('hide');
-    quizIntro.classList.remove('hide');
-};
+  // Disable all the answer buttons
+  for (let i = 0; i < answerButtons.length; i++) {
+    answerButtons[i].disabled = true;
+  }
 
-
-
-function showQuestion(){
-    console.log("Showing question!")
-    var currentPrompt = questionArr[index].prompt
-    document.getElementById("question-title").innerHTML = currentPrompt
-    console.log(currentPrompt)
-    var currentChoices = questionArr[index].choices
-    document.getElementById("choice-button").innerHTML = currentChoices
-    console.log(currentPrompt)
-    var currentAnswer = questionArr[index].answer
-    //as you show the buttons, maybe do something to let you know which one is correct?
-    //iff???
-
+  // Check if the answer is correct
+  const correctAnswer = questions[currentQuestion].correctAnswer;
+  if (event.target.value === correctAnswer) {
+    event.target.classList.add("correct");
+    // Move on to the next question
+    currentQuestion++;
+    if (currentQuestion === questions.length) {
+      // If there are no more questions, end the quiz
+      endQuiz();
+    } else {
+      setTimeout(() => {
+        // Display the next question
+        displayQuestion();
+        // Enable all the answer buttons
+        for (let i = 0; i < answerButtons.length; i++) {
+          answerButtons[i].disabled = false;
+          answerButtons[i].classList.remove("correct");
+        }
+        answered = false;
+      }, 1000);
+    }
+  } else {
+    event.target.classList.add("incorrect");
+    // Subtract time for an incorrect answer
+    timeLeft -= 10;
+    setTimeout(() => {
+        // Display the next question
+        displayQuestion();
+        // Enable all the answer buttons
+        for (let i = 0; i < answerButtons.length; i++) {
+          answerButtons[i].disabled = false;
+          answerButtons[i].classList.remove("incorrect");
+        }
+        answered = false;
+      }, 1000);
+  }
 }
-
-function checkAnswer(event){
-    event.preventDefault()
-    console.log(event)
-    console.log(event.target)
-    var currentAnswer = questionArr[index].answer
-
-}
-
-document.querySelector('#start-btn').addEventListener("click", startQuiz);
-
-function startQuiz(event){
-    event.preventDefault()
-    console.log("starting")
-    // get rid of intro paragraph?
-    document.querySelector('.quiz-intro').classList.toggle("hide");
-    // switch display none to 
-    document.querySelector('#question-section').classList.toggle('hide');
-    //implement a time
-
-    showQuestion()
-};
-
-startBtn.onclick = () => {
-    function countdown(){
-        counter--;
-            if (counter === 0){
-                clearInterval(startCountdown)
-                quizEnd()
-            };
-    let timer = document.querySelector("#timer");
-    let timeTag = "<p>Time Left: "+ counter +"</p>"
-    timeRem.innerHTML = timeTag;
-    };
-    var startCountdown = setInterval('#countdown', 1000);
-    quizIntro.classList.add("hide");
-    questionSection.classList.remove("hide");
-    showQuestions(queCount)
-};
+  
+  // Update the timer
+  function countdown() {
+    timer.innerText = timeLeft;
+    if (timeLeft === 0) {
+      endQuiz();
+    }
+    timeLeft--;
+  }
+  
+  // End the quiz
+  function endQuiz() {
+    questionSection.classList.add("hide");
+    finishedSection.classList.remove("hide");
+  }

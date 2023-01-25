@@ -89,13 +89,21 @@ padding: 25px;
     display: block;
 }
 
-.quiz-intro{
+.quiz-intro, .question-section{
     text-align: center;
 }
 
 .quiz-intro p{
 margin: 50px 100px 50px 100px;
 }
+
+.correct {
+    background-color: green;
+  }
+  
+  .incorrect {
+    background-color: red;
+  }
 
 footer{
     display: flex;

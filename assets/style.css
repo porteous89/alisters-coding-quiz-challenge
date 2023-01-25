@@ -84,12 +84,12 @@ padding: 25px;
     box-shadow: 0px 3px 5px 3px rgba(0,0,0,0.1);
 }
 
-.quiz-intro, .question-section, .finished, .highscore-list {
+.quiz-intro, .question-section, .finished, .highscore-container {
     margin: 50px;
     display: block;
 }
 
-.quiz-intro, .question-section{
+.quiz-intro, .question-section, .highscore-container{
     text-align: center;
 }
 
@@ -104,6 +104,11 @@ margin: 50px 100px 50px 100px;
   .incorrect {
     background-color: red;
   }
+
+#initials{
+    text-align: center;
+    color: #2117a7;
+}
 
 footer{
     display: flex;
